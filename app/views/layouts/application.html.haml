@@ -1,0 +1,26 @@
+- if user_signed_in?
+  !!!
+  %html
+    %head
+      %title Your Task Manager App
+      = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+      = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+      = csrf_meta_tags
+
+    %body
+      %nav
+        %a{ href: root_path } Your Task Manager App
+        -# Navbar Links
+        %ul
+          %li.nav-item
+            = link_to 'Users', users_path
+          %li.nav-item
+            = link_to 'Projects', projects_path
+          %li
+            = button_to "Sign out", destroy_user_session_path, method: :delete
+
+    = yield
+
+- else
+  = yield
+

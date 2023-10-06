@@ -1,0 +1,15 @@
+%h1 Task Details
+= button_to 'Back', project_path(@project), method: :get
+= button_to 'Edit', edit_project_task_path(@project, @task), method: :get
+
+%table
+  %tr
+    %td Subject:
+    %td= @task.subject
+  %tr
+    %td Attachments:
+    %td
+      - @task.attachments.each do |attachment|
+        %div
+          = link_to 'Download Attachment', attachment.upload.url if attachment.upload.present?
+          %span= attachment.description

@@ -1,0 +1,8 @@
+= simple_form_for @user, html: { multipart: true } do |f|
+  = f.input :avatar, as: :file
+  = f.input :first_name, required: true
+  = f.input :last_name, required: true
+  = f.input :address, required: true
+  = f.input :email, required: true
+  = f.input :password
+  = f.button :submit

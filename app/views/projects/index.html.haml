@@ -1,0 +1,19 @@
+%h1 Projects
+= button_to 'Back', root_path, method: :get
+= button_to 'Add New Project', new_project_path, method: :get
+%table
+  %thead
+    %tr
+      %th Name
+      %th Date Created
+      %th Task Count
+      %th Actions
+  %tbody
+    - @projects.each do |project|
+      %tr
+        %td= link_to project.name, project_path(project)
+        %td= project.created_at.strftime("%d-%m-%Y")
+        %td= project.tasks.count
+        %td
+          = button_to 'Edit', edit_project_path(project), method: :get
+          = button_to 'Delete', project_path(project), method: :delete, data: { confirm: 'Are you sure?' }
