@@ -3,7 +3,7 @@
     = f.input :description
     - if @task.persisted?
         = f.input :status, collection: Task.statuses.keys
-    = f.input :user_id, collection: User.all.map { |u| [u.first_name + " " + u.last_name, u.id] }, label: "Assign to"
+    = f.input :user_id, collection: User.all.map { |u| [u.full_name, u.id] }, label: "Assign to"
     = f.simple_fields_for :attachments do |a|
         = a.input :upload, as: :file
         = a.input :description

@@ -1,6 +1,7 @@
 %h1 Task Details
 = button_to 'Back', project_path(@project), method: :get
 = button_to 'Edit', edit_project_task_path(@project, @task), method: :get
+= button_to 'Delete', project_task_path(@project, @task), method: :delete, data: { confirm: 'Are you sure?' }
 
 %table
   %tr

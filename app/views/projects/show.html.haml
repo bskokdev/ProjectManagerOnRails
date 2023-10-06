@@ -2,4 +2,7 @@
 %p= @project.description
 
 = button_to 'Back', projects_path, method: :get
+= button_to 'Edit', edit_project_path(@project), method: :get
+= button_to 'Delete', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }
+
 = render 'tasks/task_list'
