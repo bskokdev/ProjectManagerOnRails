@@ -14,6 +14,14 @@ The features include:
 
 Each project has many tasks and each task has many attachments.
 
+I've used the following gems to implement the features:
+- Auth - Devise
+- File Uploads - Carrierwave
+- Pagination - Kaminari
+- Styling - Bootstrap 5
+- Views - Haml
+- Forms - Simple Form
+
 ## Requirements
 - Ruby 3.2 or higher
 - Rails 7.0 or higher
@@ -56,6 +64,14 @@ docker run --name project_manager_db -e POSTGRES_PASSWORD=postgres -e POSTGRES_U
 6. Run `rails s` to start the server
 
 ### Setup notes
+
+The seed file creates a user with the following credentials which can be used to login:
+
+```bash
+email: user1@example.com
+password: password
+```
+
 
 The `/tmp` folder might not have permissions by default.
 If you get an error when first running the server in development, rerun the server with privileges:
