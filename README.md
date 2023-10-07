@@ -41,6 +41,12 @@ development:
   database: project_manager_dev
  ```
 
+To run this database in docker, run the following command:
+
+```bash
+docker run --name project_manager_db -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e -p 5432:5432 -d postgres
+```
+
 ## Setup
 1. Clone the Repository
 2. Run `bundle install`
@@ -48,3 +54,14 @@ development:
 4. Run `rails db:migrate` to create the database tables
 5. Run `rails db:seed` to seed the database with sample data
 6. Run `rails s` to start the server
+
+### Setup notes
+
+The `/tmp` folder might not have permissions by default.
+If you get an error when first running the server in development, rerun the server with privileges:
+
+```bash
+sudo rails s
+``` 
+
+To get rid of this issue all together we could create a Docker compose file to run the app in a container. 
