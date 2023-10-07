@@ -1,5 +1,7 @@
 # Project Manager on Rails
 
+![Example Image](img.png)
+
 ## Description
 
 This is a Rails application that serves as a project management tool.
