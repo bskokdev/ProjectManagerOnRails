@@ -5,6 +5,8 @@ class TasksController < ApplicationController
 
   def new
     @task = @project.tasks.build
+
+    # Allows us to build 3 attachments for each task
     3.times { @task.attachments.build }
   end
 
@@ -36,6 +38,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  # Saves the task and redirects to the specified path
   def save_task(success_notice, fail_action)
     if @task.save
       redirect_to project_task_path(@project, @task), notice: success_notice
@@ -44,6 +47,7 @@ class TasksController < ApplicationController
     end
   end
 
+  # Permitted parameters for a task
   def task_params
     params.require(:task).permit(:subject, :description, :status, :user_id, attachments_attributes: [:id, :upload, :description, :_destroy])
   end

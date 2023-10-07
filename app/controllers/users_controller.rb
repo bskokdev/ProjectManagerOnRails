@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 
   private
 
+  # Saves the user and redirects to the specified path
   def save_user(success_notice, fail_action)
     if @user.save
       redirect_to @user, notice: success_notice
@@ -53,6 +54,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # Defines the permitted parameters for a user
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :avatar, :address)
   end

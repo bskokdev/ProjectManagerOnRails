@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
 
   private
 
+  # Saves the project and redirects to the specified path
   def save_project(success_notice, fail_action)
     if @project.save
       redirect_to @project, notice: success_notice
@@ -43,10 +44,12 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Sets the project for the specified id in the params
   def set_project
     @project = Project.find(params[:id])
   end
 
+  # Defines the permitted parameters for a project
   def project_params
     params.require(:project).permit(:name, :description)
   end

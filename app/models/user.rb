@@ -6,6 +6,11 @@ class User < ApplicationRecord
 
   mount_uploader  :avatar, AvatarUploader
   has_many :tasks, dependent: :restrict_with_error
+  validates :first_name, :last_name, :email, presence: true
+
+  # Returns the full name of the user
+  #
+  # @return [String]
   def full_name
     "#{first_name} #{last_name}"
   end

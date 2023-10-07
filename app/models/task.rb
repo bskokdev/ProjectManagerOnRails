@@ -13,6 +13,9 @@ class Task < ApplicationRecord
 
   private
 
+  # Set default status to 0 (New)
+  #
+  # @return [void]
   def set_default_status
     self.status ||= 0
   end
