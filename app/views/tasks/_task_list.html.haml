@@ -1,7 +1,6 @@
 %h3 Tasks
-= button_to 'Add New Task', new_project_task_path(@project), method: :get
 
-%table
+%table.table
   %thead
     %tr
       %th Subject
@@ -13,7 +12,9 @@
       %tr
         %td= link_to "#{task.subject}", project_task_path(@project, task)
         %td= task.status
-        %td= User.find(task.user_id).first_name
-        %td
-          = button_to 'Edit', edit_project_task_path(@project, task), method: :get
-          = button_to 'Delete', project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' }
+        %td= User.find(task.user_id).full_name
+        %td.d-flex
+          %a.btn.btn-primary.mr-2{ href: edit_project_task_path(@project, task) } Edit
+          = button_to 'Delete', project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+
+= paginate @tasks

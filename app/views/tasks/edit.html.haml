@@ -1,4 +1,8 @@
-%h1 Edit Task
+%div.card
+  %div.card-header
+    %div.d-flex.justify-content-between.align-items-center
+      %h1 Edit Task
+      %a.btn.btn-primary{ href: project_path(@project) } Back
+  %div.card-body
+    = render 'form'
 
-= button_to 'Back', project_path(@project), method: :get
-= render 'form'

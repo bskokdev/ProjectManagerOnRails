@@ -1,12 +1,19 @@
-= simple_form_for [@project, @task], html: { multipart: true } do |f|
-    = f.input :subject
-    = f.input :description
+= simple_form_for [@project, @task], html: { class: 'needs-validation', multipart: true } do |f|
+    .form-group
+        = f.input :subject, input_html: { class: 'form-control' }, label_html: { class: 'form-label' }
+    .form-group
+        = f.input :description, input_html: { class: 'form-control' }, label_html: { class: 'form-label' }
     - if @task.persisted?
-        = f.input :status, collection: Task.statuses.keys
-    = f.input :user_id, collection: User.all.map { |u| [u.full_name, u.id] }, label: "Assign to"
-    = f.simple_fields_for :attachments do |a|
-        = a.input :upload, as: :file
-        = a.input :description
-    = f.button :submit
-
-
+        .form-group
+            = f.input :status, collection: Task.statuses.keys, input_html: { class: 'form-control' }, label_html: { class: 'form-label' }
+    .form-group
+        = f.input :user_id, collection: User.all.map { |u| [u.full_name, u.id] }, label: "Assign to", input_html: { class: 'form-control' }, label_html: { class: 'form-label' }
+    %h3 Attachments
+    .form-group
+        = f.simple_fields_for :attachments do |a|
+            .form-group
+                = a.input :description, input_html: { class: 'form-control' }, label: "Attachment description"
+            .form-group
+                = a.input :upload, as: :file, input_html: { class: 'form-control-file' }, label: false
+    .form-group
+        = f.button :submit, class: 'btn btn-primary'

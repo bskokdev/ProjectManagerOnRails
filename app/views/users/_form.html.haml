@@ -1,8 +1,16 @@
-= simple_form_for @user, html: { multipart: true } do |f|
-  = f.input :avatar, as: :file
-  = f.input :first_name, required: true
-  = f.input :last_name, required: true
-  = f.input :address, required: true
-  = f.input :email, required: true
-  = f.input :password
-  = f.button :submit
+= simple_form_for @user, html: { class: 'needs-validation', multipart: true } do |f|
+  .form-group
+    = f.input :avatar, as: :file, input_html: { class: 'form-control-file' }, label: 'Avatar'
+  .form-group
+    = f.input :first_name, required: true, input_html: { class: 'form-control' }, label_html: { class: 'form-label' }
+  .form-group
+    = f.input :last_name, required: true, input_html: { class: 'form-control' }, label_html: { class: 'form-label' }
+  .form-group
+    = f.input :address, required: true, input_html: { class: 'form-control' }, label_html: { class: 'form-label' }
+  .form-group
+    = f.input :email, required: true, input_html: { class: 'form-control' }, label_html: { class: 'form-label' }
+  .form-group
+    = f.input :password, input_html: { class: 'form-control' }, label_html: { class: 'form-label' }
+  .form-group
+    = f.button :submit, class: 'btn btn-primary'
+

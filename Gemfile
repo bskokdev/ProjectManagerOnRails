@@ -52,10 +52,6 @@ gem 'hamlit'
 gem 'simple_form'
 gem 'kaminari'
 
-
-gem 'jquery-rails'
-gem 'cocoon'
-
 # Use Sass to process CSS
 # gem "sassc-rails"
 

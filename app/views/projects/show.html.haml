@@ -1,8 +1,14 @@
-%h1= @project.name
-%p= @project.description
+%div.card
+  %div.card-header
+    %div.d-flex.justify-content-between
+      %h4= @project.name
+      %div.d-flex
+        %a.btn.btn-info.mx-2{ href: edit_project_path(@project) } Edit
+        = button_to 'Delete', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+  %div.card-body
+    %p.card-text= @project.description
+    = render 'tasks/task_list'
+  %div.card-footer.d-flex.justify-content-between
+    %a.btn.btn-primary{ href: projects_path } Back
+    %a.btn.btn-success{ href: new_project_task_path(@project) } Add New Task
 
-= button_to 'Back', projects_path, method: :get
-= button_to 'Edit', edit_project_path(@project), method: :get
-= button_to 'Delete', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }
-
-= render 'tasks/task_list'

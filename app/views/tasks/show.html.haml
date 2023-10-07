@@ -1,16 +1,20 @@
-%h1 Task Details
-= button_to 'Back', project_path(@project), method: :get
-= button_to 'Edit', edit_project_task_path(@project, @task), method: :get
-= button_to 'Delete', project_task_path(@project, @task), method: :delete, data: { confirm: 'Are you sure?' }
-
-%table
-  %tr
-    %td Subject:
-    %td= @task.subject
-  %tr
-    %td Attachments:
-    %td
+%div.card
+  %div.card-header
+    %div.d-flex.justify-content-between
+      %h5= @task.subject
+      %div.d-flex
+        %a.btn.btn-info.mx-2{ href: edit_project_task_path(@project, @task) } Edit
+        = button_to 'Delete', project_task_path(@project, @task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+  %div.card-body
+    %h6 Description
+    %p.card-text= @task.description
+    %h6 Attachments
+    %ul.list-group
       - @task.attachments.each do |attachment|
-        %div
-          = link_to 'Download Attachment', attachment.upload.url if attachment.upload.present?
-          %span= attachment.description
+        %li.list-group-item.d-flex.justify-content-between.align-items-center
+          = attachment.description
+          = link_to 'Download', attachment.upload.url, class: 'btn btn-outline-primary btn-sm' if attachment.upload.present?
+  %div.card-footer
+    %a.btn.btn-primary{ href: project_path(@project) } Back
+
+

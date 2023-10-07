@@ -1,19 +1,27 @@
-%h1 Projects
-= button_to 'Back', root_path, method: :get
-= button_to 'Add New Project', new_project_path, method: :get
-%table
-  %thead
-    %tr
-      %th Name
-      %th Date Created
-      %th Task Count
-      %th Actions
-  %tbody
-    - @projects.each do |project|
-      %tr
-        %td= link_to project.name, project_path(project)
-        %td= project.created_at.strftime("%d-%m-%Y")
-        %td= project.tasks.count
-        %td
-          = button_to 'Edit', edit_project_path(project), method: :get
-          = button_to 'Delete', project_path(project), method: :delete, data: { confirm: 'Are you sure?' }
+%div.card
+  %div.card-header
+    %h1 Projects
+  %div.card-body
+    %table.table.table-md
+      %thead
+        %tr
+          %th Name
+          %th Date Created
+          %th Task Count
+          %th Actions
+      %tbody
+        - @projects.each do |project|
+          %tr
+            %td= link_to project.name, project_path(project)
+            %td= project.created_at.strftime("%d-%m-%Y")
+            %td= project.tasks.count
+            %td.d-flex
+              %a.btn.btn-primary.mr-2{ href: edit_project_path(project) } Edit
+              = button_to 'Delete', project_path(project), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+    - if @projects.total_pages > 1
+      .pagination
+        = paginate @projects
+
+  %div.card-footer
+    %div.d-flex.justify-content-between
+      %a.btn.btn-success{ href: new_project_path } Add New Project

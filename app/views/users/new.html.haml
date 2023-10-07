@@ -1,3 +1,7 @@
-%h1 Add New User
-= button_to 'Back', users_path, method: :get
-= render 'form'
+%div.card
+  %div.card-header
+    %div.d-flex.justify-content-between.align-items-center
+      %h1 Add New User
+      %a.btn.btn-primary{ href: users_path } Back
+  %div.card-body
+    = render 'form'

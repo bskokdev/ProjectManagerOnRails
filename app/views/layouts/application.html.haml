@@ -2,25 +2,30 @@
   !!!
   %html
     %head
+      %link{rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"}
+      %script{src: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"}
+      %script{src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"}
+      %script{src: "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"}
       %title Your Task Manager App
       = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
       = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
       = csrf_meta_tags
 
     %body
-      %nav
-        %a{ href: root_path } Your Task Manager App
-        -# Navbar Links
-        %ul
+      %nav.navbar.py-4.shadow-sm.mb-5.px-5
+        %a.h2.text-decoration-none{ href: root_path, style: 'color: black; text-decoration: none;' } Project Manager on Rails
+        %ul.nav.d-flex.align-items-center.h6
           %li.nav-item
-            = link_to 'Users', users_path
-          %li.nav-item
-            = link_to 'Projects', projects_path
-          %li
-            = button_to "Sign out", destroy_user_session_path, method: :delete
+            = link_to 'Users', users_path, style: 'color: black; text-decoration: none;'
+          %li.nav-item.mx-4
+            = link_to 'Projects', projects_path, style: 'color: black; text-decoration: none;'
+          = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger navbar-btn'
 
-    = yield
+    .px-5
+      = yield
 
 - else
-  = yield
+  .px-5
+    = yield
 

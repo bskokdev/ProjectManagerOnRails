@@ -3,13 +3,9 @@ class TasksController < ApplicationController
   before_action :set_project
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @tasks = @project.tasks
-  end
-
   def new
     @task = @project.tasks.build
-    5.times { @task.attachments.build }
+    3.times { @task.attachments.build }
   end
 
   def edit

@@ -1,22 +1,29 @@
-%h1 #{@user.full_name} Details
+%div.card
+  %div.card-header
+    %div.d-flex.justify-content-between
+      %h4= @user.full_name
+      %div.d-flex
+        %a.btn.btn-info.mx-2{ href: edit_user_path(@user) } Edit
+        = button_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+  %div.card-body
+    %div.d-flex.flex-column.align-items-start
+      %div
+        %strong Avatar:
+        - if @user.avatar?
+          = image_tag(@user.avatar.url, size: "100x100", class: 'ml-2')
+      %div.mt-2
+        %strong First Name:
+        %span.ml-2= @user.first_name
+      %div.mt-2
+        %strong Last Name:
+        %span.ml-2= @user.last_name
+      %div.mt-2
+        %strong Email:
+        %span.ml-2= @user.email
+      %div.mt-2
+        %strong Address:
+        %span.ml-2= @user.address
+  %div.card-footer
+    %a.btn.btn-primary{ href: users_path } Back
 
-= button_to 'Back', users_path, method: :get
-= button_to 'Edit', edit_user_path(@user), method: :get
-= button_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }
 
-%table
-  %tr
-    %td Avatar:
-    %td= image_tag(@user.avatar.url, size: "100x100") if @user.avatar?
-  %tr
-    %td First Name:
-    %td= @user.first_name
-  %tr
-    %td Last Name:
-    %td= @user.last_name
-  %tr
-    %td Email:
-    %td= @user.email
-  %tr
-    %td Address:
-    %td= @user.address

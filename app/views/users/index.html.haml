@@ -1,18 +1,27 @@
-%h1 Users
-= button_to 'Back', root_path, method: :get
-= button_to 'Add New User', new_user_path, method: :get
+%div.card
+  %div.card-header
+    %h1 Users
+  %div.card-body
+    %table.table.table-md
+      %thead
+        %tr
+          %th Full Name
+          %th Email
+          %th Actions
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= link_to user.full_name, user_path(user)
+            %td= user.email
+            %td.d-flex
+              %a.btn.btn-primary.mr-2{ href: edit_user_path(user) } Edit
+              = button_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Email
-      %th Actions
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= link_to "#{user.first_name} #{user.last_name}", user_path(user)
-        %td= user.email
-        %td
-          = button_to 'Edit', edit_user_path(user), method: :get
-          = button_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+    - if @users.total_pages > 1
+      .pagination
+        = paginate @users
+
+  %div.card-footer
+    %div.d-flex.justify-content-between
+      %a.btn.btn-primary{ href: root_path } Back
+      %a.btn.btn-success{ href: new_user_path } Add New User
