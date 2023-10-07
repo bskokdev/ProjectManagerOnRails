@@ -3,12 +3,12 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = Project.page(params[:page]).per(10)
+    @projects = Project.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
     @project = Project.find(params[:id])
-    @tasks = @project.tasks.page(params[:page]).per(10)
+    @tasks = @project.tasks.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new
